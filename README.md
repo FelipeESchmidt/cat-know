@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CATKNOW
 
-## Getting Started
+I created a cat encyclopedia web app with two main pages, powered by The Cat API. The first page displays an infinite scrolling list of cat images and their names. When I click on a specific cat image, a second page opens with more detailed information about that cat.
 
-First, run the development server:
+## Responsiveness
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- On desktop, I show a grid with 4 columns.
+- On tablets, I show a 2-column grid.
+- On mobile devices, I show a single-column layout.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I'm using The Cat API, which is documented here:  
+https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+API endpoints I used:
 
-## Learn More
+- Fetch images list: `https://api.thecatapi.com/v1/images/search`
+- Fetch categories list: `https://api.thecatapi.com/v1/categories`
+- Get specific cat: `https://api.thecatapi.com/v1/images/<ID>`
 
-To learn more about Next.js, take a look at the following resources:
+On the first page, users can filter cats by **CATEGORY** by clicking on the filter chips.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Here’s a Figma link with design mockups that I used as a reference. I followed the design loosely and felt free to make adjustments as needed:  
+[FIGMA](https://www.figma.com/design/O59cTYodflm2C6VozQRV9v/Untitled?node-id=0-1&t=r8jUUjbanMo3Jrf5-1)
 
-## Deploy on Vercel
+## Technology Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+I built this project using **Next.js**, with support for either the `pages` or `app` router. I chose **TypeScript** as the development language.  
+The code is committed to a GitHub repository.

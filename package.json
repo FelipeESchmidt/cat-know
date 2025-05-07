@@ -1,5 +1,6 @@
 {
   "name": "cat-know",
+  "author": "Felipe Schmidt",
   "version": "0.1.0",
   "private": true,
   "scripts": {
