@@ -26,9 +26,14 @@ export const CardItem = ({ image, title, countyCode }: CardItemProps) => {
         onLoad={() => setLoaded(true)}
       />
       {loaded && (
-        <div style={{ display: "flex" }}>
+        <div className={styles.catInfo}>
           <p className={styles.title}>{title}</p>
-          <ReactCountryFlag countryCode={countyCode} svg />
+          <ReactCountryFlag
+            svg
+            title={countyCode}
+            className={styles.flag}
+            countryCode={countyCode}
+          />
         </div>
       )}
     </div>
