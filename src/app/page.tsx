@@ -19,7 +19,7 @@ export default function CatGallery() {
 
   const renderPrincipal = () => {
     if (isLoading && !data.length) {
-      return <CardListingLoading forceOnlyOneLine />;
+      return <CardListingLoading />;
     } else if (error) {
       return <div>{error}</div>;
     }
@@ -30,6 +30,8 @@ export default function CatGallery() {
           imageField="url"
           titleField="name"
           countyCodeField="countyCode"
+          blockCall={isLoading || !data.length}
+          loadNextPage={loadNextPage}
         />
         {isLoadingMore && <CardListingLoading forceOnlyOneLine />}
       </>

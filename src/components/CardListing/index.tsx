@@ -1,7 +1,11 @@
 import styles from "./index.module.css";
 import { CardItem } from "../CardItem";
+import {
+  InfiniteScrollTrigger,
+  InfiniteScrollTriggerProps,
+} from "../InfiniteScrollTrigger";
 
-export interface CardListingProps<T> {
+export interface CardListingProps<T> extends InfiniteScrollTriggerProps {
   data: T[];
   titleField: keyof T;
   imageField: keyof T;
@@ -13,6 +17,7 @@ export const CardListing = <T,>({
   imageField,
   titleField,
   countyCodeField,
+  ...infiniteScrollProps
 }: CardListingProps<T>) => {
   return (
     <div className={styles.grid}>
@@ -24,6 +29,7 @@ export const CardListing = <T,>({
           countyCode={String(item[countyCodeField])}
         />
       ))}
+      <InfiniteScrollTrigger {...infiniteScrollProps} />
     </div>
   );
 };
