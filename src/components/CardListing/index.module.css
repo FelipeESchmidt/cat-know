@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(1, 1fr);
 }
 
@@ -13,5 +13,27 @@
 @media (min-width: 1024px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gridLoading > :nth-child(n + 2) {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .gridLoading > :nth-child(-n + 2) {
+    display: block;
+  }
+  .gridLoading > :nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridLoading > :nth-child(-n + 4) {
+    display: block;
+  }
+  .gridLoading > :nth-child(n + 5) {
+    display: none;
   }
 }
