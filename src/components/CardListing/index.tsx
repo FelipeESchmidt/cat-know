@@ -1,9 +1,12 @@
+import React from "react";
+
 import styles from "./index.module.css";
 import { CardItem } from "../CardItem";
 import {
   InfiniteScrollTrigger,
   InfiniteScrollTriggerProps,
 } from "../InfiniteScrollTrigger";
+import { ScrollToTopButton } from "../ScrollToTopButton";
 
 export interface CardListingProps<T> extends InfiniteScrollTriggerProps {
   data: T[];
@@ -29,6 +32,7 @@ export const CardListing = <T,>({
           countyCode={String(item[countyCodeField])}
         />
       ))}
+      <ScrollToTopButton />
       <InfiniteScrollTrigger {...infiniteScrollProps} />
     </div>
   );
