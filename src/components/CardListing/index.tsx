@@ -14,6 +14,7 @@ export interface CardListingProps<T> extends InfiniteScrollTriggerProps {
   titleField: keyof T;
   imageField: keyof T;
   countyCodeField: keyof T;
+  originField?: keyof T;
 }
 
 export const CardListing = <T,>({
@@ -22,6 +23,7 @@ export const CardListing = <T,>({
   imageField,
   titleField,
   countyCodeField,
+  originField,
   ...infiniteScrollProps
 }: CardListingProps<T>) => {
   return (
@@ -33,6 +35,7 @@ export const CardListing = <T,>({
           image={String(item[imageField])}
           title={String(item[titleField])}
           countyCode={String(item[countyCodeField])}
+          origin={originField ? String(item[originField]) : undefined}
         />
       ))}
       <ScrollToTopButton />

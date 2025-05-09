@@ -35,6 +35,7 @@ export default function CatGallery() {
           idField="id"
           imageField="url"
           titleField="name"
+          originField="origin"
           countyCodeField="countyCode"
           blockCall={isLoading || !data.length}
           loadNextPage={loadNextPage}

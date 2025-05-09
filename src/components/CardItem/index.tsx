@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import ReactCountryFlag from "react-country-flag";
 
-import { defaultCountryCode } from "@/lib/normalizer/cats";
-
 import { LoadingDots } from "../LoadingDots";
 import styles from "./index.module.css";
 
@@ -13,6 +11,7 @@ interface CardItemProps {
   image: string;
   title: string;
   countyCode: string;
+  origin?: string;
   asGiant?: boolean;
 }
 
@@ -21,6 +20,7 @@ export const CardItem = ({
   image,
   title,
   countyCode,
+  origin,
   asGiant,
 }: CardItemProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +41,7 @@ export const CardItem = ({
             <p className={styles.title}>{title}</p>
             <ReactCountryFlag
               svg
-              title={countyCode !== defaultCountryCode ? countyCode : ""}
+              title={origin}
               className={styles.flag}
               countryCode={countyCode}
             />

@@ -11,4 +11,5 @@ export interface CatDetailedReceived {
 export interface CatDetailedNormalized extends CatDetailedReceived {
   name: string;
   countyCode: string;
+  origin?: string;
 }

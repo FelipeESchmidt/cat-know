@@ -16,6 +16,7 @@ export const normalizeCatDetailed = (
     ...data,
     name: (fallBackName || data.breeds[0]?.name) ?? randomCatName(),
     countyCode: data.breeds[0]?.country_code ?? "AQ",
+    origin: data.breeds[0]?.origin,
   };
 };
 

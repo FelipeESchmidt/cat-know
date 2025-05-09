@@ -1,4 +1,6 @@
 .card {
+  display: flex;
+  flex-direction: column;
   height: 300px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -14,13 +16,26 @@
 }
 
 .cardGiant {
-  height: 60vh;
+  height: 50vh;
+}
+
+@media (min-width: 1024px) {
+  .cardGiant {
+    height: 75vh;
+  }
 }
 
 .card:hover {
   transform: rotateX(3deg) rotateY(-3deg) scale(1.02);
   box-shadow: 0 8px 16px rgba(212, 175, 55, 0.15);
   border-color: var(--color-primary);
+}
+
+.cardGiant:hover {
+  cursor: default;
+  transform: rotateX(0) rotateY(0) scale(1);
+  box-shadow: 0 0 0 #000;
+  border-color: var(--color-border);
 }
 
 .image {
@@ -32,6 +47,7 @@
 
 .catInfo {
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
