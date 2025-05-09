@@ -9,11 +9,19 @@ const randomCatName = () => {
 };
 
 export const normalizeCatDetailed = (
+  data: CatDetailedReceived,
+  fallBackName?: string
+): CatDetailedNormalized => {
+  return {
+    ...data,
+    name: (fallBackName || data.breeds?.[0]?.name) ?? randomCatName(),
+    countyCode: data.breeds?.[0]?.country_code ?? "AQ",
+    origin: data.breeds?.[0]?.origin,
+  };
+};
+
+export const normalizeCatsDetailed = (
   data: CatDetailedReceived[]
 ): CatDetailedNormalized[] => {
-  return data.map((item) => ({
-    ...item,
-    name: item.breeds[0]?.name ?? randomCatName(),
-    countyCode: item.breeds[0]?.country_code ?? "AQ",
-  }));
+  return data.map((item) => normalizeCatDetailed(item));
 };

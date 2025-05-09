@@ -6,9 +6,10 @@ import { useCatsGetter } from "@/hooks/useCatsGetter";
 import { CardListing } from "@/components/CardListing";
 import { CardListingLoading } from "@/components/CardListing/loading";
 
-import styles from "./page.module.css";
 import { CategorySelector } from "@/components/CategorySelector";
 import { useCategoryGetter } from "@/hooks/useCategoryGetter";
+
+import styles from "./page.module.css";
 
 export default function CatGallery() {
   const searchParams = useSearchParams();
@@ -31,8 +32,10 @@ export default function CatGallery() {
       <>
         <CardListing
           data={data}
+          idField="id"
           imageField="url"
           titleField="name"
+          originField="origin"
           countyCodeField="countyCode"
           blockCall={isLoading || !data.length}
           loadNextPage={loadNextPage}
