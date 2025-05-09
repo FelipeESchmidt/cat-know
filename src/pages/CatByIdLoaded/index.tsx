@@ -1,7 +1,8 @@
 "use client";
 
-import { CardItem } from "@/components/CardItem";
 import { CatDetailedNormalized } from "@/types";
+import { CardItem } from "@/components/CardItem";
+import { CatDetails } from "@/components/CatDetails";
 
 import mainStyles from "../../app/page.module.css";
 import styles from "./index.module.css";
@@ -17,12 +18,14 @@ export function CatByIdLoaded({ cat }: CatByIdLoadedProps) {
         <h1 className={mainStyles.title}>CatKnow</h1>
         <div className={styles.catInfo}>
           <CardItem
-            title={cat.name}
-            id={cat.id}
-            countyCode={cat.countyCode}
-            image={cat.url}
             asGiant
+            id={cat.id}
+            title={cat.name}
+            image={cat.url}
+            origin={cat.origin}
+            countyCode={cat.countyCode}
           />
+          <CatDetails breed={cat.breeds[0]} />
         </div>
       </div>
     </main>
