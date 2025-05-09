@@ -1,41 +1,33 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { fetchCatById } from "@/lib/api/cats";
+import { CatByIdLoaded } from "@/pages/CatByIdLoaded";
+import { CatByIdLoading } from "@/pages/CatByIdLoaded/loading";
 
 export interface CatIdParamsProps {
   params: Promise<{ catId: string }>;
-  searchParams?: { name?: string };
+  searchParams: Promise<{ name?: string }>;
 }
 
-export default async function CatId({
+export default async function CatById({
   params,
   searchParams,
 }: CatIdParamsProps) {
   const { catId } = await params;
-  const fallbackName = searchParams?.name;
+  const { name } = await searchParams;
 
-  let cat: any = null;
-
-  try {
-    cat = await fetchCatById(catId);
-  } catch (e) {
-    console.error("Failed to fetch cat", e);
-    notFound();
-  }
+  const cat = await fetchCatById(catId, name);
 
   if (!cat) {
     notFound();
   }
 
-  const imageUrl = cat.url;
-  const name = fallbackName || cat.breeds?.[0]?.name || "Unknown";
-
   return (
-    <div>
-      <h1>{name}</h1>
-      <div>
-        <img src={imageUrl} alt={name} />
-      </div>
-    </div>
+    <section>
+      <Suspense fallback={<CatByIdLoading />}>
+        <CatByIdLoaded cat={cat} />
+      </Suspense>
+    </section>
   );
 }

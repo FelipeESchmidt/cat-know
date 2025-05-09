@@ -1,6 +1,9 @@
 import { CatDetailedNormalized, CatDetailedReceived } from "@/types";
 
-import { normalizeCatDetailed } from "../normalizer/cats";
+import {
+  normalizeCatDetailed,
+  normalizeCatsDetailed,
+} from "../normalizer/cats";
 import { api } from "./axios";
 import { CAT_SINGLE, CATS_LIST } from "./endpoints";
 
@@ -28,13 +31,14 @@ export const fetchCatsPaginated = async (
   params.mime_types = "jpg,png";
 
   const res = await api.get<CatDetailedReceived[]>(CATS_LIST, { params });
-  return normalizeCatDetailed(res.data);
+  return normalizeCatsDetailed(res.data);
 };
 
 export const fetchCatById = async (
-  id: string
+  id: string,
+  fallBackName?: string
 ): Promise<CatDetailedNormalized> => {
   const res = await api.get<CatDetailedReceived>(`${CAT_SINGLE}/${id}`);
-  const [cat] = normalizeCatDetailed([res.data]);
+  const cat = normalizeCatDetailed(res.data, fallBackName);
   return cat;
 };
