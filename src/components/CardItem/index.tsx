@@ -5,6 +5,7 @@ import ReactCountryFlag from "react-country-flag";
 import { LoadingDots } from "../LoadingDots";
 
 import styles from "./index.module.css";
+import { defaultCountryCode } from "@/lib/normalizer/cats";
 
 interface CardItemProps {
   image: string;
@@ -30,7 +31,7 @@ export const CardItem = ({ image, title, countyCode }: CardItemProps) => {
           <p className={styles.title}>{title}</p>
           <ReactCountryFlag
             svg
-            title={countyCode}
+            title={countyCode !== defaultCountryCode ? countyCode : ""}
             className={styles.flag}
             countryCode={countyCode}
           />

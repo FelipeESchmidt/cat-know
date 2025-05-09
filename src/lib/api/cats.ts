@@ -24,7 +24,6 @@ export const fetchCatsPaginated = async (
   }
 
   params.mime_types = "jpg,png";
-  params.has_breeds = 1;
 
   const res = await api.get<CatDetailedReceived[]>(CATS_LIST, { params });
   return normalizeCatDetailed(res.data);
