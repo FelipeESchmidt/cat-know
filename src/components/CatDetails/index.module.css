@@ -20,15 +20,19 @@
   font-size: 1.75rem;
   font-weight: bold;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
 }
 
 .description {
   font-size: 1rem;
 }
 
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .meta p {
-  margin: 0.25rem 0;
   color: var(--color-muted);
 }
 
@@ -56,4 +60,21 @@
   color: var(--color-primary);
   font-weight: 500;
   text-decoration: underline;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.category {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  background: var(--color-primary);
+  color: var(--color-surface);
 }

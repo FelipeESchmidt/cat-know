@@ -1,19 +1,32 @@
 import ReactCountryFlag from "react-country-flag";
 
-import { BreedDetailed } from "@/types";
+import Link from "next/link";
+import { BreedDetailed, CategoryReceived } from "@/types";
 
 import styles from "./index.module.css";
 import { Trait } from "../Trait";
 
 interface CatDetailsProps {
   breed: BreedDetailed;
+  categories?: CategoryReceived[];
 }
 
-export const CatDetails = ({ breed }: CatDetailsProps) => {
+export const CatDetails = ({ breed, categories = [] }: CatDetailsProps) => {
   return (
     <div className={styles.details}>
       <div className={styles.detailsTop}>
-        <h2 className={styles.name}>{breed.name}</h2>
+        <div className={styles.title}>
+          <h2 className={styles.name}>{breed.name}</h2>
+          {categories.map(({ id, name }) => (
+            <Link
+              href={`/?categoryId=${id}`}
+              key={id}
+              className={styles.category}
+            >
+              {name}
+            </Link>
+          ))}
+        </div>
         <p className={styles.description}>{breed.description}</p>
       </div>
 
@@ -26,13 +39,13 @@ export const CatDetails = ({ breed }: CatDetailsProps) => {
             countryCode={breed.country_code}
           />
         </p>
-        <p>
+        <p className={styles.info}>
           <b>Temperament:</b> {breed.temperament}
         </p>
-        <p>
+        <p className={styles.info}>
           <b>Life Span:</b> {breed.life_span} years
         </p>
-        <p>
+        <p className={styles.info}>
           <b>Weight:</b> {breed.weight.metric} kg
         </p>
       </div>
