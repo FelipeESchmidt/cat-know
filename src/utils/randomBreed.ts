@@ -34,13 +34,15 @@ const generateRandomTemperament = (min = 3, max = 5): string => {
   return selected.join(", ");
 };
 
-export const generateRandomBreedDetailed = (catName: string): BreedDetailed => {
+export const generateRandomBreedDetailed = (
+  catName?: string
+): BreedDetailed => {
   const randomId = `rand-${Math.floor(Math.random() * 100000)}`;
   const refImageId = `img-${Math.floor(Math.random() * 9999)}`;
 
   return {
     id: randomId,
-    name: catName,
+    name: catName || `Random Cat ${randomId}`,
     description:
       "A friendly and curious cat that loves people, playtime, and moderate activity.",
     temperament: generateRandomTemperament(),
