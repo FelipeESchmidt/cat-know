@@ -45,7 +45,7 @@ export default function CatGallery() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Cat Encyclopedia</h1>
+        <h1 className={styles.title}>CatKnow</h1>
         <CategorySelector
           categories={categoriesData}
           isLoading={categoriesIsLoading}
