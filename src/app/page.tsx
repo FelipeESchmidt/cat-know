@@ -31,6 +31,7 @@ export default function CatGallery() {
       <>
         <CardListing
           data={data}
+          idField="id"
           imageField="url"
           titleField="name"
           countyCodeField="countyCode"

@@ -1,16 +1,41 @@
+import { notFound } from "next/navigation";
+
+import { fetchCatById } from "@/lib/api/cats";
+
 export interface CatIdParamsProps {
   params: Promise<{ catId: string }>;
+  searchParams?: { name?: string };
 }
 
-export default async function CatId({ params }: CatIdParamsProps) {
+export default async function CatId({
+  params,
+  searchParams,
+}: CatIdParamsProps) {
   const { catId } = await params;
+  const fallbackName = searchParams?.name;
+
+  let cat: any = null;
+
+  try {
+    cat = await fetchCatById(catId);
+  } catch (e) {
+    console.error("Failed to fetch cat", e);
+    notFound();
+  }
+
+  if (!cat) {
+    notFound();
+  }
+
+  const imageUrl = cat.url;
+  const name = fallbackName || cat.breeds?.[0]?.name || "Unknown";
 
   return (
-    <section className="mb-16 bg-black">
+    <div>
+      <h1>{name}</h1>
       <div>
-        <h1>CAT PAGE</h1>
-        <p>CAT ID: {catId}</p>
+        <img src={imageUrl} alt={name} />
       </div>
-    </section>
+    </div>
   );
 }

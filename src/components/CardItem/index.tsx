@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useState } from "react";
 import ReactCountryFlag from "react-country-flag";
 
@@ -8,16 +9,20 @@ import styles from "./index.module.css";
 import { defaultCountryCode } from "@/lib/normalizer/cats";
 
 interface CardItemProps {
+  id: string;
   image: string;
   title: string;
   countyCode: string;
 }
 
-export const CardItem = ({ image, title, countyCode }: CardItemProps) => {
+export const CardItem = ({ id, image, title, countyCode }: CardItemProps) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className={styles.card}>
+    <Link
+      href={`/cat/${id}?name=${encodeURIComponent(title)}`}
+      className={styles.card}
+    >
       {!loaded && <LoadingDots />}
       <img
         src={image}
@@ -37,6 +42,6 @@ export const CardItem = ({ image, title, countyCode }: CardItemProps) => {
           />
         </div>
       )}
-    </div>
+    </Link>
   );
 };

@@ -2,7 +2,7 @@ import { CatDetailedNormalized, CatDetailedReceived } from "@/types";
 
 import { normalizeCatDetailed } from "../normalizer/cats";
 import { api } from "./axios";
-import { CATS_LIST } from "./endpoints";
+import { CAT_SINGLE, CATS_LIST } from "./endpoints";
 
 export const PAGE_SIZE = 20;
 
@@ -29,4 +29,12 @@ export const fetchCatsPaginated = async (
 
   const res = await api.get<CatDetailedReceived[]>(CATS_LIST, { params });
   return normalizeCatDetailed(res.data);
+};
+
+export const fetchCatById = async (
+  id: string
+): Promise<CatDetailedNormalized> => {
+  const res = await api.get<CatDetailedReceived>(`${CAT_SINGLE}/${id}`);
+  const [cat] = normalizeCatDetailed([res.data]);
+  return cat;
 };
