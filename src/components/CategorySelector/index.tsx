@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import styles from "./index.module.css";
 import { CategorySelectorLoading } from "./loading";
@@ -13,19 +13,18 @@ interface Category {
 interface CategorySelectorProps {
   categories: Category[];
   isLoading?: boolean;
+  categoryId?: number;
 }
 
 export const CategorySelector = ({
   categories,
   isLoading,
+  categoryId,
 }: CategorySelectorProps) => {
-  const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const selectedId = Number(searchParams.get("categoryId"));
-
   const handleClick = (id?: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams();
     if (id === undefined) {
       params.delete("categoryId");
     } else {
@@ -41,7 +40,7 @@ export const CategorySelector = ({
   return (
     <div className={styles.wrapper}>
       <button
-        className={`${styles.button} ${!selectedId ? styles.active : ""}`}
+        className={`${styles.button} ${!categoryId ? styles.active : ""}`}
         onClick={() => handleClick(undefined)}
       >
         All
@@ -50,7 +49,7 @@ export const CategorySelector = ({
         <button
           key={cat.id}
           className={`${styles.button} ${
-            selectedId === cat.id ? styles.active : ""
+            categoryId === cat.id ? styles.active : ""
           }`}
           onClick={() => handleClick(cat.id)}
         >

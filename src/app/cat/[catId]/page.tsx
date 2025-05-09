@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { fetchCatById } from "@/lib/api/cats";
-import { CatByIdLoaded } from "@/pages/CatByIdLoaded";
-import { CatByIdLoading } from "@/pages/CatByIdLoaded/loading";
+import CatByIdLoaded from "@/pages/CatByIdLoaded";
+import CatByIdLoading from "@/pages/CatByIdLoaded/loading";
 
 export interface CatIdParamsProps {
   params: Promise<{ catId: string }>;

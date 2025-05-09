@@ -11,13 +11,13 @@ import mainStyles from "../../app/page.module.css";
 import styles from "./index.module.css";
 
 export interface CatByIdLoadedProps {
-  cat: CatDetailedNormalized;
+  cat?: CatDetailedNormalized;
 }
 
-export function CatByIdLoaded({ cat }: CatByIdLoadedProps) {
-  const breedToDisplay = cat.breeds
+export default function CatByIdLoaded({ cat }: CatByIdLoadedProps) {
+  const breedToDisplay = cat?.breeds
     ? cat.breeds[0]
-    : generateRandomBreedDetailed(cat.name);
+    : generateRandomBreedDetailed(cat?.name);
 
   return (
     <main className={mainStyles.page}>
@@ -26,15 +26,17 @@ export function CatByIdLoaded({ cat }: CatByIdLoadedProps) {
           <h1 className={mainStyles.title}>CatKnow</h1>
         </Link>
         <div className={styles.catInfo}>
-          <CardItem
-            asGiant
-            id={cat.id}
-            title={cat.name}
-            image={cat.url}
-            origin={cat.origin}
-            countyCode={cat.countyCode}
-          />
-          {<CatDetails breed={breedToDisplay} categories={cat.categories} />}
+          {cat && (
+            <CardItem
+              asGiant
+              id={cat.id}
+              title={cat.name}
+              image={cat.url}
+              origin={cat.origin}
+              countyCode={cat.countyCode}
+            />
+          )}
+          {<CatDetails breed={breedToDisplay} categories={cat?.categories} />}
         </div>
       </div>
     </main>

@@ -3,7 +3,7 @@ import { CardItemLoading } from "@/components/CardItem/loading";
 import mainStyles from "../../app/page.module.css";
 import styles from "./index.module.css";
 
-export function CatByIdLoading() {
+export default function CatByIdLoading() {
   return (
     <main className={mainStyles.page}>
       <div className={mainStyles.container}>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { useCatsGetter } from "@/hooks/useCatsGetter";
@@ -11,9 +12,9 @@ import { useCategoryGetter } from "@/hooks/useCategoryGetter";
 
 import styles from "./page.module.css";
 
-export default function CatGallery() {
+function CatGallery() {
   const searchParams = useSearchParams();
-  const categoryIdParam = searchParams.get("categoryId");
+  const categoryIdParam = searchParams?.get("categoryId");
 
   const categoryId = categoryIdParam ? Number(categoryIdParam) : undefined;
 
@@ -52,9 +53,18 @@ export default function CatGallery() {
         <CategorySelector
           categories={categoriesData}
           isLoading={categoriesIsLoading}
+          categoryId={categoryId}
         />
         {renderPrincipal()}
       </div>
     </main>
+  );
+}
+
+export default function CatGalleryBase() {
+  return (
+    <Suspense>
+      <CatGallery />
+    </Suspense>
   );
 }
