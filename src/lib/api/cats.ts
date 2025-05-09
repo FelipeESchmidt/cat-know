@@ -21,6 +21,8 @@ export const fetchCatsPaginated = async (
 
   if (filters.categoryId !== undefined) {
     params.category_ids = filters.categoryId;
+  } else {
+    params.has_breeds = 1;
   }
 
   params.mime_types = "jpg,png";
