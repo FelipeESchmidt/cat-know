@@ -66,22 +66,22 @@ export const CatDetails = ({ breed, categories = [] }: CatDetailsProps) => {
 
       <div className={styles.links}>
         {breed.wikipedia_url && (
-          <a
+          <Link
             href={breed.wikipedia_url}
             target="_blank"
             rel="noopener noreferrer"
           >
             Wikipedia
-          </a>
+          </Link>
         )}
         {breed.vetstreet_url && (
-          <a
+          <Link
             href={breed.vetstreet_url}
             target="_blank"
             rel="noopener noreferrer"
           >
             VetStreet
-          </a>
+          </Link>
         )}
       </div>
     </div>
